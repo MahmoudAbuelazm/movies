@@ -6,6 +6,12 @@ class Movie {
   final String overview;
   final double voteAverage;
 
-  Movie(this.id, this.title, this.backdropPath, this.genreIds, this.overview,
-      this.voteAverage);
+  Movie({
+    required this.id,
+    required this.title,
+    required this.backdropPath,
+    required this.genreIds,
+    required this.overview,
+    required this.voteAverage,
+  });
 }
