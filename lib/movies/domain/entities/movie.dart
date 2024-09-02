@@ -1,4 +1,7 @@
-class Movie {
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:equatable/equatable.dart';
+
+class Movie extends Equatable {
   final int id;
   final String title;
   final String backdropPath;
@@ -6,7 +9,7 @@ class Movie {
   final String overview;
   final double voteAverage;
 
-  Movie({
+  const Movie({
     required this.id,
     required this.title,
     required this.backdropPath,
@@ -15,23 +18,18 @@ class Movie {
     required this.voteAverage,
   });
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is Movie &&
-          other.id == id &&
-          other.title == title &&
-          other.backdropPath == backdropPath &&
-          other.genreIds == genreIds &&
-          other.overview == overview &&
-          other.voteAverage == voteAverage;
+
+
 
   @override
-  int get hashCode =>
-      id.hashCode ^
-      title.hashCode ^
-      backdropPath.hashCode ^
-      genreIds.hashCode ^
-      overview.hashCode ^
-      voteAverage.hashCode;
+  List<Object> get props {
+    return [
+      id,
+      title,
+      backdropPath,
+      genreIds,
+      overview,
+      voteAverage,
+    ];
+  }
 }
