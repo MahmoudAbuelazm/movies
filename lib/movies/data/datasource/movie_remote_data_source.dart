@@ -8,7 +8,8 @@ class MovieRemoteDataSource {
     final respone = await Dio().get(AppConstants.baseUrl);
 
     if (respone.statusCode == 200) {
-      return respone.data;
+      return List<MovieModel>.from(
+          respone.data['results'].map((x) => MovieModel.fromJson(x)));
     } else {
       throw Exception('Failed to load data');
     }
