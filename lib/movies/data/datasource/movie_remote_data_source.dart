@@ -9,7 +9,7 @@ class MovieRemoteDataSource {
 
     if (respone.statusCode == 200) {
       return List<MovieModel>.from(
-          respone.data['results'].map((x) => MovieModel.fromJson(x)));
+          (respone.data['results'] as List).map((x) => MovieModel.fromJson(x)));
     } else {
       throw Exception('Failed to load data');
     }
