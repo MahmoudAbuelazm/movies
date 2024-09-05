@@ -38,6 +38,6 @@ class _MoviesScreenState extends State<MoviesScreen> {
         MoviesRepository(baseMovieRemoteDataSource);
 
     final result = await GetNowPlayingUsecase(baseMovieRepository).excute();
-    print(result);
+    
   }
 }
