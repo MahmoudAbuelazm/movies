@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:movies/core/error/exception.dart';
+import 'package:movies/core/error/exceptions.dart';
 import 'package:movies/movies/data/models/movie_model.dart';
 
 import '../../../core/network/error_message_model.dart';
