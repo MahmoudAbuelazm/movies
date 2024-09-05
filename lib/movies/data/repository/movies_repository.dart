@@ -3,6 +3,8 @@ import 'package:movies/movies/domain/entities/movie.dart';
 import '../../domain/repository/base_movie_repository.dart';
 
 class MoviesRepository extends BaseMovieRepository{
+  MoviesRepository(super.remoteDataSource);
+
   @override
   Future<List<Movie>> getNowPlaying() {
     // TODO: implement getNowPlaying
