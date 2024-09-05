@@ -8,6 +8,7 @@ import '../../../core/network/error_message_model.dart';
 abstract class BaseMovieRemoteDataSource {
   Future<List<MovieModel>> getNowPlayingMovies();
   Future<List<MovieModel>> getPopularMovies();
+  Future<List<MovieModel>> getTopRatedMovies();
 }
 
 class MovieRemoteDataSource extends BaseMovieRemoteDataSource {
@@ -22,10 +23,28 @@ class MovieRemoteDataSource extends BaseMovieRemoteDataSource {
       throw ServerException(ErrorMessageModel.fromJson(respone.data));
     }
   }
-  
+
   @override
-  Future<List<MovieModel>> getPopularMovies() {
-    // TODO: implement getPopularMovies
-    throw UnimplementedError();
+  Future<List<MovieModel>> getPopularMovies() async {
+    final respone = await Dio().get(ApiConstants.popular);
+
+    if (respone.statusCode == 200) {
+      return List<MovieModel>.from(
+          (respone.data['results'] as List).map((x) => MovieModel.fromJson(x)));
+    } else {
+      throw ServerException(ErrorMessageModel.fromJson(respone.data));
+    }
+  }
+
+  @override
+  Future<List<MovieModel>> getTopRatedMovies() async {
+    final respone = await Dio().get(ApiConstants.topRated);
+
+    if (respone.statusCode == 200) {
+      return List<MovieModel>.from(
+          (respone.data['results'] as List).map((x) => MovieModel.fromJson(x)));
+    } else {
+      throw ServerException(ErrorMessageModel.fromJson(respone.data));
+    }
   }
 }
