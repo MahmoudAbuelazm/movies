@@ -8,7 +8,6 @@ class ErrorMessageModel extends Equatable {
   const ErrorMessageModel(
       {required this.statusCode, required this.message, required this.success});
 
-
   factory ErrorMessageModel.fromJson(Map<String, dynamic> json) {
     return ErrorMessageModel(
       statusCode: json['status_code'],
@@ -16,4 +15,7 @@ class ErrorMessageModel extends Equatable {
       success: json['success'],
     );
   }
+
+  @override
+  List<Object?> get props => [statusCode, message, success];
 }
