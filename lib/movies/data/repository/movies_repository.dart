@@ -22,13 +22,13 @@ class MoviesRepository extends BaseMovieRepository {
   }
 
   @override
-  Future<List<Movie>> getPopular() {
+  Future<Either<Failure, List<Movie>>>  getPopular() {
     // TODO: implement getPopular
     throw UnimplementedError();
   }
 
   @override
-  Future<List<Movie>> getTopRated() {
+  Future<Either<Failure, List<Movie>>>  getTopRated() {
     // TODO: implement getTopRated
     throw UnimplementedError();
   }
