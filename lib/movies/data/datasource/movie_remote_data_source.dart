@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:movies/movies/data/models/movie_model.dart';
 
+import '../../../core/network/error_message_model.dart';
 import '../../../core/utils/app_constants.dart';
 
 class MovieRemoteDataSource {
@@ -11,7 +12,8 @@ class MovieRemoteDataSource {
       return List<MovieModel>.from(
           (respone.data['results'] as List).map((x) => MovieModel.fromJson(x)));
     } else {
-      throw Exception('Failed to load data');
+      return ErrorMessageModel.fromJson(respone.data);
+      
     }
   }
 }
