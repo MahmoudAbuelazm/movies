@@ -22,14 +22,22 @@ class MoviesRepository extends BaseMovieRepository {
   }
 
   @override
-  Future<Either<Failure, List<Movie>>>  getPopular() {
-    // TODO: implement getPopular
-    throw UnimplementedError();
+  Future<Either<Failure, List<Movie>>> getPopular() async {
+    final result = await remoteDataSource.getPopularMovies();
+    try {
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.errorMessageModel.message));
+    }
   }
 
   @override
-  Future<Either<Failure, List<Movie>>>  getTopRated() {
-    // TODO: implement getTopRated
-    throw UnimplementedError();
+  Future<Either<Failure, List<Movie>>> getTopRated() async {
+    final result = await remoteDataSource.getTopRatedMovies();
+    try {
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.errorMessageModel.message));
+    }
   }
 }
