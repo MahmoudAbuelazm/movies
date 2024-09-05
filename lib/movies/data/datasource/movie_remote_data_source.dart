@@ -7,6 +7,7 @@ import '../../../core/network/error_message_model.dart';
 
 abstract class BaseMovieRemoteDataSource {
   Future<List<MovieModel>> getNowPlayingMovies();
+  Future<List<MovieModel>> getPopularMovies();
 }
 
 class MovieRemoteDataSource extends BaseMovieRemoteDataSource {
@@ -20,5 +21,11 @@ class MovieRemoteDataSource extends BaseMovieRemoteDataSource {
     } else {
       throw ServerException(ErrorMessageModel.fromJson(respone.data));
     }
+  }
+  
+  @override
+  Future<List<MovieModel>> getPopularMovies() {
+    // TODO: implement getPopularMovies
+    throw UnimplementedError();
   }
 }
