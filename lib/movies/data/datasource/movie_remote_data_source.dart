@@ -5,9 +5,14 @@ import 'package:movies/movies/data/models/movie_model.dart';
 import '../../../core/network/api_constants.dart';
 import '../../../core/network/error_message_model.dart';
 
-class MovieRemoteDataSource {
+abstract class BaseMovieRemoteDataSource {
+  Future<List<MovieModel>> getNowPlayingMovies();
+}
+
+class MovieRemoteDataSource extends BaseMovieRemoteDataSource {
+  @override
   Future<List<MovieModel>> getNowPlayingMovies() async {
-    final respone = await Dio().get(ApiConstants.baseUrl);
+    final respone = await Dio().get(ApiConstants.nowPlaying);
 
     if (respone.statusCode == 200) {
       return List<MovieModel>.from(
