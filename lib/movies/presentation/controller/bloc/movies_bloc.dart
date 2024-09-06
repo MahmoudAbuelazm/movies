@@ -11,21 +11,20 @@ part 'movies_event.dart';
 part 'movies_state.dart';
 
 class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
- final GetNowPlayingUsecase getNowPlayingUsecase;
- final GetPopularUsecase getPopularMoviesUsecase;
+  final GetNowPlayingUsecase getNowPlayingUsecase;
+  final GetPopularUsecase getPopularMoviesUsecase;
   final GetTopRatedUsecase getTopRatedMoviesUsecase;
 
   MoviesBloc(
-    this.getNowPlayingUsecase
-    ,
+    this.getNowPlayingUsecase,
     this.getPopularMoviesUsecase,
     this.getTopRatedMoviesUsecase,
   ) : super(const MoviesState()) {
     on<GetNowPlayingMovies>((event, emit) async {
-      
       final result = await getNowPlayingUsecase.excute();
       result.fold(
-        (failure) => emit(const MoviesState(nowPlayingrequestState: RequestState.error)),
+        (failure) =>
+            emit(const MoviesState(nowPlayingrequestState: RequestState.error)),
         (movies) => emit(
           MoviesState(
             nowPlayingMovies: movies,
@@ -37,12 +36,14 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
 
     on<GetPopularMovies>((event, emit) async {
       final result = await getPopularMoviesUsecase.execute();
+      print(result);
       result.fold(
-        (failure) => emit(const MoviesState(nowPlayingrequestState: RequestState.error)),
+        (failure) =>
+            emit(const MoviesState(nowPlayingrequestState: RequestState.error)),
         (movies) => emit(
           MoviesState(
-            nowPlayingMovies: movies,
-            nowPlayingrequestState: RequestState.loaded,
+            popularMovies: movies,
+            popularRequestState: RequestState.loaded,
           ),
         ),
       );
