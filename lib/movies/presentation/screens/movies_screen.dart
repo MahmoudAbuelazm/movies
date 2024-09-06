@@ -15,6 +15,7 @@ class MoviesScreen extends StatelessWidget {
       lazy: false,
       child: BlocBuilder<MoviesBloc, MoviesState>(
         builder: (context, state) {
+          print(state);
           return Scaffold(
             appBar: AppBar(
               title: const Text('Movies'),
