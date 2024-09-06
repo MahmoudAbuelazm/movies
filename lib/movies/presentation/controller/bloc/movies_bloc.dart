@@ -47,5 +47,19 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
         ),
       );
     });
+
+    on<GetTopRatedMovies>((event, emit) async {
+      final result = await getTopRatedMoviesUsecase.execute();
+      result.fold(
+        (failure) =>
+            emit(state.copyWith(topRatedRequestState: RequestState.error)),
+        (movies) => emit(
+          state.copyWith(
+            topRatedMovies: movies,
+            topRatedRequestState: RequestState.loaded,
+          ),
+        ),
+      );
+    });
   }
 }

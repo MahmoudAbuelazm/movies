@@ -7,6 +7,8 @@ part of 'movies_bloc.dart';
   final List<Movie> popularMovies;
   final RequestState popularRequestState;
   final String popularMessage;
+  final List<Movie> topRatedMovies;
+  final RequestState topRatedRequestState;
 
   const MoviesState({
     
@@ -16,6 +18,8 @@ part of 'movies_bloc.dart';
     this.popularMovies = const [],
     this.popularRequestState = RequestState.loading,
     this.popularMessage = '',
+    this.topRatedMovies = const [],
+    this.topRatedRequestState = RequestState.loading,
   });
 
   MoviesState copyWith({
@@ -25,6 +29,9 @@ part of 'movies_bloc.dart';
     List<Movie>? popularMovies,
     RequestState? popularRequestState,
     String? popularMessage,
+    List<Movie>? topRatedMovies,
+    RequestState? topRatedRequestState,
+
   }) {
     return MoviesState(
       nowPlayingMovies: nowPlayingMovies ?? this.nowPlayingMovies,
@@ -33,6 +40,9 @@ part of 'movies_bloc.dart';
       popularMovies: popularMovies ?? this.popularMovies,
       popularRequestState: popularRequestState ?? this.popularRequestState,
       popularMessage: popularMessage ?? this.popularMessage,
+      topRatedMovies: topRatedMovies ?? this.topRatedMovies,
+      topRatedRequestState: topRatedRequestState ?? this.topRatedRequestState,
+
     );
   }
 
@@ -44,6 +54,8 @@ part of 'movies_bloc.dart';
         popularMovies,
         popularRequestState,
         popularMessage,
+        topRatedMovies,
+        topRatedRequestState,
       ];
 }
 

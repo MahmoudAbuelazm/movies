@@ -16,7 +16,7 @@ class PopularComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<MoviesBloc, MoviesState>(
       builder: (context, state) {
-        return FadeInRightBig(
+        return FadeIn(
           child: SizedBox(
             height: 170.0,
             child: ListView.builder(
