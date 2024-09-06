@@ -17,7 +17,7 @@ class NowPlayingComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<MoviesBloc, MoviesState>(
       builder: (context, state) {
-        switch (state.requestState) {
+        switch (state.nowPlayingrequestState) {
           case RequestState.loading:
             return const SizedBox(
               height: 400.0,
@@ -26,8 +26,7 @@ class NowPlayingComponent extends StatelessWidget {
               ),
             );
           case RequestState.loaded:
-            return FadeIn(
-              duration: const Duration(milliseconds: 500),
+            return FadeInDown(
               child: CarouselSlider(
                 options: CarouselOptions(
                   height: 400.0,
