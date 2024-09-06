@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/services/services_loactor.dart';
 import '../controller/bloc/movies_bloc.dart';
 
 class MoviesScreen extends StatelessWidget {
@@ -10,7 +11,9 @@ class MoviesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) {
-        return MoviesBloc()..add(const GetNowPlayingMovies());
+        return MoviesBloc(
+          sl(),
+        )..add(const GetNowPlayingMovies());
       },
       lazy: false,
       child: BlocBuilder<MoviesBloc, MoviesState>(
