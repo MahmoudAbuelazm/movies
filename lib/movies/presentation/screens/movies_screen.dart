@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../../core/network/api_constants.dart';
 import '../../../core/utils/dummy.dart';
 
 class MainMoviesScreen extends StatelessWidget {
@@ -54,7 +55,7 @@ class MainMoviesScreen extends StatelessWidget {
                           blendMode: BlendMode.dstIn,
                           child: CachedNetworkImage(
                             height: 560.0,
-                            imageUrl: ApiConstance.imageUrl(item.backdropPath!),
+                            imageUrl: ApiConstants.imageUrl(item.backdropPath),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -86,7 +87,7 @@ class MainMoviesScreen extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 16.0),
                                 child: Text(
-                                  item.title!,
+                                  item.title,
                                   textAlign: TextAlign.center,
                                   style: const TextStyle(
                                     fontSize: 24,
@@ -159,7 +160,7 @@ class MainMoviesScreen extends StatelessWidget {
                         child: CachedNetworkImage(
                           width: 120.0,
                           fit: BoxFit.cover,
-                          imageUrl: ApiConstance.imageUrl(movie.backdropPath!),
+                          imageUrl: ApiConstants.imageUrl(movie.backdropPath),
                           placeholder: (context, url) => Shimmer.fromColors(
                             baseColor: Colors.grey[850]!,
                             highlightColor: Colors.grey[800]!,
@@ -243,7 +244,7 @@ class MainMoviesScreen extends StatelessWidget {
                         child: CachedNetworkImage(
                           width: 120.0,
                           fit: BoxFit.cover,
-                          imageUrl: ApiConstance.imageUrl(movie.backdropPath!),
+                          imageUrl: ApiConstants.imageUrl(movie.backdropPath),
                           placeholder: (context, url) => Shimmer.fromColors(
                             baseColor: Colors.grey[850]!,
                             highlightColor: Colors.grey[800]!,
