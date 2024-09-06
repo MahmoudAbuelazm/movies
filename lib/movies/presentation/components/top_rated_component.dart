@@ -15,6 +15,8 @@ class TopRatedComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MoviesBloc, MoviesState>(
+      buildWhen: (previous, current) =>
+          previous.topRatedMovies != current.topRatedMovies,
       builder: (context, state) {
         return FadeIn(
           duration: const Duration(milliseconds: 500),
