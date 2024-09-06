@@ -18,6 +18,24 @@ part of 'movies_bloc.dart';
     this.popularMessage = '',
   });
 
+  MoviesState copyWith({
+    List<Movie>? nowPlayingMovies,
+    RequestState? nowPlayingrequestState,
+    String? nowPlayingMessage,
+    List<Movie>? popularMovies,
+    RequestState? popularRequestState,
+    String? popularMessage,
+  }) {
+    return MoviesState(
+      nowPlayingMovies: nowPlayingMovies ?? this.nowPlayingMovies,
+      nowPlayingrequestState: nowPlayingrequestState ?? this.nowPlayingrequestState,
+      nowPlayingMessage: nowPlayingMessage ?? this.nowPlayingMessage,
+      popularMovies: popularMovies ?? this.popularMovies,
+      popularRequestState: popularRequestState ?? this.popularRequestState,
+      popularMessage: popularMessage ?? this.popularMessage,
+    );
+  }
+
   @override
   List<Object> get props => [
         nowPlayingMovies,
