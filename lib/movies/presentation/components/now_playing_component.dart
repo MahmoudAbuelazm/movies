@@ -19,9 +19,11 @@ class NowPlayingComponent extends StatelessWidget {
       builder: (context, state) {
         switch (state.requestState) {
           case RequestState.loading:
-            print('loading');
-            return const Center(
-              child: CircularProgressIndicator(),
+            return const SizedBox(
+              height: 400.0,
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
             );
           case RequestState.loaded:
             return FadeIn(
@@ -117,8 +119,11 @@ class NowPlayingComponent extends StatelessWidget {
             );
 
           case RequestState.error:
-            return const Center(
-              child: Text('Error'),
+            return SizedBox(
+              height: 400.0,
+              child: Center(
+                child: Text(state.nowPlayingMessage),
+              ),
             );
         }
       },
