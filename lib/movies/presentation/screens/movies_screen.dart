@@ -131,10 +131,12 @@ class MainMoviesScreen extends StatelessWidget {
                       padding: EdgeInsets.all(8.0),
                       child: Row(
                         children: [
-                          Text('See More', style: TextStyle(color: Colors.white)),
+                          Text('See More',
+                              style: TextStyle(color: Colors.white)),
                           Icon(
                             Icons.arrow_forward_ios,
                             size: 16.0,
+                            color: Colors.white,
                           )
                         ],
                       ),
@@ -216,10 +218,12 @@ class MainMoviesScreen extends StatelessWidget {
                       padding: EdgeInsets.all(8.0),
                       child: Row(
                         children: [
-                          Text('See More' , style: TextStyle(color: Colors.white)),
+                          Text('See More',
+                              style: TextStyle(color: Colors.white)),
                           Icon(
                             Icons.arrow_forward_ios,
                             size: 16.0,
+                            color: Colors.white,
                           )
                         ],
                       ),
