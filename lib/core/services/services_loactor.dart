@@ -4,12 +4,15 @@ import 'package:movies/movies/domain/usecases/get_now_playing_usecase.dart';
 
 import '../../movies/data/datasource/movie_remote_data_source.dart';
 import '../../movies/data/repository/movies_repository.dart';
+import '../../movies/presentation/controller/bloc/movies_bloc.dart';
 
 
 final sl = GetIt.instance;
 
 class ServicesLoactor {
   void init() {
+
+    sl.registerFactory(() => MoviesBloc(sl()));
     // Use cases
     sl.registerLazySingleton(() => GetNowPlayingUsecase(sl()));
 
