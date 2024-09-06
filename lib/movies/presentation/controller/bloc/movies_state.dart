@@ -1,6 +1,6 @@
 part of 'movies_bloc.dart';
 
-abstract class MoviesState extends Equatable {
+ class MoviesState extends Equatable {
   final List<Movie> nowPlayingMovies;
   final RequestState requestState;
   final String nowPlayingMessage;
