@@ -1,5 +1,5 @@
 
-import '../../domain/entities/movie.dart';
+import '../../movies/domain/entities/movie.dart';
 
 List<Movie> moviesList = [
   const Movie(
