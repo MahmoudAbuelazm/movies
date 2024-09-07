@@ -3,6 +3,8 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../core/utils/app_string.dart';
+
 class SeeMoreContainer extends StatelessWidget {
   final String text;
   final void Function() onTap;
@@ -38,7 +40,7 @@ class SeeMoreContainer extends StatelessWidget {
                 padding: EdgeInsets.all(8.0),
                 child: Row(
                   children: [
-                    Text('See More', style: TextStyle(color: Colors.white)),
+                    Text(AppString.seeMore, style: TextStyle(color: Colors.white)),
                     Icon(
                       Icons.arrow_forward_ios,
                       size: 16.0,

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/movies/presentation/controller/bloc/movies_bloc.dart';
 
 import '../../../core/services/services_loactor.dart';
+import '../../../core/utils/app_string.dart';
 import '../components/now_playing_component.dart';
 import '../components/popular_component.dart';
 import '../components/see_more_container.dart';
@@ -26,14 +27,14 @@ class MainMoviesScreen extends StatelessWidget {
             children: [
               const NowPlayingComponent(),
               SeeMoreContainer(
-                text: "Popular",
+                text: AppString.popular,
                 onTap: () {
                   /// TODO : NAVIGATION TO Popular Movies Screen
                 },
               ),
               const PopularComponent(),
               SeeMoreContainer(
-                text: "Top Rated",
+                text: AppString.topRated,
                 onTap: () {
                   /// TODO : NAVIGATION TO Top Rated Movies Screen
                 },
