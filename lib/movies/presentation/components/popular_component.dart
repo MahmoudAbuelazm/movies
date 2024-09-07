@@ -6,6 +6,7 @@ import 'package:movies/movies/presentation/controller/bloc/movies_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../core/network/api_constants.dart';
+import '../screens/movie_detail_screen.dart';
 
 class PopularComponent extends StatelessWidget {
   const PopularComponent({
@@ -31,7 +32,9 @@ class PopularComponent extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 8.0),
                   child: InkWell(
                     onTap: () {
-                      /// TODO : NAVIGATE TO  MOVIE DETAILS
+                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        return MovieDetailScreen(id: state.popularMovies[index].id);
+                        }));
                     },
                     child: ClipRRect(
                       borderRadius:
