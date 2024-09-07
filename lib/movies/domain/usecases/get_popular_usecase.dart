@@ -9,7 +9,7 @@ class GetPopularUsecase{
 
   GetPopularUsecase(this._moviesRepository);
 
-  Future<Either<Failure, List<Movie>>>  execute() async {
+  Future<Either<Failure, List<Movie>>>  call() async {
     return await _moviesRepository.getPopular();
   }
 }

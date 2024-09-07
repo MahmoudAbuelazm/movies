@@ -9,7 +9,7 @@ class GetTopRatedUsecase {
 
   GetTopRatedUsecase(this._moviesRepository);
 
-  Future<Either<Failure, List<Movie>>>  execute() async {
+  Future<Either<Failure, List<Movie>>>  call() async {
     return await _moviesRepository.getTopRated();
   }
 }

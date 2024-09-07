@@ -9,7 +9,7 @@ class GetNowPlayingUsecase {
 
   GetNowPlayingUsecase(this._repository);
 
-  Future<Either<Failure, List<Movie>>>  excute() async {
+  Future<Either<Failure, List<Movie>>>  call() async {
     return await _repository.getNowPlaying();
   }
 }
