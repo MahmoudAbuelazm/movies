@@ -1,5 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:movies/movies/domain/entities/movie.dart';
+import 'package:movies/movies/domain/entities/movie_details.dart';
+import 'package:movies/movies/domain/usecases/get_movie_details_usecase.dart';
 
 import '../../../core/error/exceptions.dart';
 import '../../../core/error/failure.dart';
@@ -40,4 +42,16 @@ class MoviesRepository extends BaseMovieRepository {
       return Left(ServerFailure(e.errorMessageModel.message));
     }
   }
+
+  @override
+  Future<Either<Failure, MovieDetails>> getMovieDetails(MovieDetailsParams movieId)async {
+    final result =await remoteDataSource.getMovieDetails(movieId);
+    try {
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.errorMessageModel.message));
+    }
+  }
+
+  
 }
