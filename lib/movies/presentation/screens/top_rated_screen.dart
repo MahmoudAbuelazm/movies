@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../core/network/api_constants.dart';
@@ -14,15 +15,19 @@ class TopRatedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
+      appBar: AppBar(
+        title: const Text('Top Rated Movies'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12.0),
+        child: ListView.builder(
+          shrinkWrap: true,
+          itemCount: movies.length,
+          itemBuilder: (context, index) {
+            final movie = movies[index];
+            return MovieItem(movie: movie, index: index);
+          },
         ),
-        itemCount: movies.length,
-        itemBuilder: (context, index) {
-          final movie = movies[index];
-          return MovieItem(movie: movie, index: index);
-        },
       ),
     );
   }
@@ -44,108 +49,138 @@ class MovieItem extends StatelessWidget {
       delay: Duration(
         milliseconds: 50 * index,
       ),
-      child: InkWell(
-        onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return MovieDetailScreen(
-              id: movie.id,
-            );
-          }));
-        },
-        child: Padding(
-          padding: const EdgeInsets.all(4.0),
-          child: ClipRRect(
-            borderRadius: const BorderRadius.all(Radius.circular(4.0)),
-            child: Stack(
-              alignment: Alignment.bottomCenter,
-              children: [
-                CachedNetworkImage(
-                  imageUrl: ApiConstants.imageUrl(movie.backdropPath),
-                  placeholder: (context, url) => Shimmer.fromColors(
-                    baseColor: Colors.grey[850]!,
-                    highlightColor: Colors.grey[800]!,
-                    child: Container(
-                      height: 170.0,
-                      width: 120.0,
-                      decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(8.0),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        child: InkWell(
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return MovieDetailScreen(
+                id: movie.id,
+              );
+            }));
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.grey[800],
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  ClipRRect(
+                    borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                    child: CachedNetworkImage(
+                      width: 100.0,
+                      height: 140.0,
+                      imageUrl: ApiConstants.imageUrl(movie.backdropPath),
+                      placeholder: (context, url) => Shimmer.fromColors(
+                        baseColor: Colors.grey[850]!,
+                        highlightColor: Colors.grey[800]!,
+                        child: Container(
+                          width: 100.0,
+                          height: 140.0,
+                          decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        ),
                       ),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                      fit: BoxFit.cover,
                     ),
                   ),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
-                  height: 180.0,
-                  fit: BoxFit.cover,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      movie.title,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 12.0,
-                        fontWeight: FontWeight.bold,
+                  const SizedBox(width: 10.0),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 10.0,
                       ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const SizedBox(
-                          width: 4.0,
-                        ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 1.0,
-                            horizontal: 4.0,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.grey[800],
-                            borderRadius: BorderRadius.circular(4.0),
-                          ),
-                          child: Text(
-                            movie.releaseDate.split('-')[0],
-                            style: const TextStyle(
-                              fontSize: 10.0,
-                              fontWeight: FontWeight.w500,
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width - 150,
+                        height: 20.0,
+                        child: Text(movie.title,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: GoogleFonts.poppins(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w700,
+                              letterSpacing: 1.2,
+                            )),
+                      ),
+                      const SizedBox(height: 8.0),
+                      Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 1.0,
+                              horizontal: 4.0,
                             ),
-                          ),
-                        ),
-                        const SizedBox(width: 16.0),
-                        Row(
-                          children: [
-                            const Icon(
-                              Icons.star,
-                              color: Colors.amber,
-                              size: 15.0,
+                            decoration: BoxDecoration(
+                              color: Colors.red,
+                              borderRadius: BorderRadius.circular(4.0),
                             ),
-                            const SizedBox(width: 4.0),
-                            Text(
-                              (movie.voteAverage / 2).toStringAsFixed(1),
+                            child: Text(
+                              movie.releaseDate.split('-')[0],
                               style: const TextStyle(
                                 fontSize: 10.0,
                                 fontWeight: FontWeight.w500,
-                                letterSpacing: 1.2,
                               ),
                             ),
-                            const SizedBox(width: 4.0),
-                            Text(
-                              '(${movie.voteAverage})',
-                              style: const TextStyle(
-                                fontSize: 1.0,
-                                fontWeight: FontWeight.w500,
-                                letterSpacing: 1.2,
+                          ),
+                          const SizedBox(width: 16.0),
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.star,
+                                color: Colors.amber,
+                                size: 20.0,
                               ),
+                              const SizedBox(width: 4.0),
+                              Text(
+                                (movie.voteAverage / 2).toStringAsFixed(1),
+                                style: const TextStyle(
+                                  fontSize: 10.0,
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: 1.2,
+                                ),
+                              ),
+                              const SizedBox(width: 4.0),
+                              Text(
+                                '(${movie.voteAverage})',
+                                style: const TextStyle(
+                                  fontSize: 1.0,
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: 1.2,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 16.0),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width - 150,
+                        height: 60.0,
+                        child: Flexible(
+                          child: Text(
+                            movie.overview,
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.w400,
+                              letterSpacing: 1.2,
                             ),
-                          ],
+                          ),
                         ),
-                        const SizedBox(width: 16.0),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
