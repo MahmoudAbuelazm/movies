@@ -5,8 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../core/network/api_constants.dart';
+import '../../../core/utils/app_string.dart';
 import '../controller/bloc/movies_bloc.dart';
 import '../screens/movie_detail_screen.dart';
+import '../screens/top_rated_screen.dart';
+import 'see_more_container.dart';
 
 class TopRatedComponent extends StatelessWidget {
   const TopRatedComponent({
@@ -19,56 +22,70 @@ class TopRatedComponent extends StatelessWidget {
       buildWhen: (previous, current) =>
           previous.topRatedMovies != current.topRatedMovies,
       builder: (context, state) {
-        return FadeIn(
-          duration: const Duration(milliseconds: 500),
-          child: SizedBox(
-            height: 170.0,
-            child: ListView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              itemCount: state.topRatedMovies.length,
-              itemBuilder: (context, index) {
-                final movie = state.topRatedMovies[index];
-                return Container(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return MovieDetailScreen(
-                          id: movie.id,
-                        );
-                      }));
-                    },
-                    child: ClipRRect(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(8.0)),
-                      child: CachedNetworkImage(
-                        width: 120.0,
-                        fit: BoxFit.cover,
-                        imageUrl: ApiConstants.imageUrl(movie.backdropPath),
-                        placeholder: (context, url) => Shimmer.fromColors(
-                          baseColor: Colors.grey[850]!,
-                          highlightColor: Colors.grey[800]!,
-                          child: Container(
-                            height: 170.0,
-                            width: 120.0,
-                            decoration: BoxDecoration(
-                              color: Colors.black,
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                          ),
-                        ),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
-                      ),
-                    ),
-                  ),
-                );
+        return Column(
+          children: [
+            SeeMoreContainer(
+              text: AppString.topRated,
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return TopRatedScreen(
+                    movies: state.topRatedMovies,
+                  );
+                }));
               },
             ),
-          ),
+            FadeIn(
+              duration: const Duration(milliseconds: 500),
+              child: SizedBox(
+                height: 170.0,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  itemCount: state.topRatedMovies.length,
+                  itemBuilder: (context, index) {
+                    final movie = state.topRatedMovies[index];
+                    return Container(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return MovieDetailScreen(
+                              id: movie.id,
+                            );
+                          }));
+                        },
+                        child: ClipRRect(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(8.0)),
+                          child: CachedNetworkImage(
+                            width: 120.0,
+                            fit: BoxFit.cover,
+                            imageUrl: ApiConstants.imageUrl(movie.backdropPath),
+                            placeholder: (context, url) => Shimmer.fromColors(
+                              baseColor: Colors.grey[850]!,
+                              highlightColor: Colors.grey[800]!,
+                              child: Container(
+                                height: 170.0,
+                                width: 120.0,
+                                decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                              ),
+                            ),
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+          ],
         );
       },
     );

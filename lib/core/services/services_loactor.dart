@@ -16,7 +16,7 @@ final sl = GetIt.instance;
 class ServicesLoactor {
   void init() {
     sl.registerFactory(() => MoviesBloc(sl(), sl(), sl()));
-    sl.registerLazySingleton(() => MovieDetailsBloc(sl(), sl()));
+    sl.registerFactory(() => MovieDetailsBloc(sl(), sl()));
     // Use cases
     sl.registerLazySingleton(() => GetNowPlayingUsecase(sl()));
     sl.registerLazySingleton(() => GetPopularUsecase(sl()));

@@ -25,7 +25,6 @@ class MovieDetailScreen extends StatelessWidget {
         bloc.add(GetSimilarMoviesEvent(id));
         return bloc;
       },
-      lazy: false,
       child: const Scaffold(
         body: MovieDetailContent(),
       ),
@@ -201,7 +200,6 @@ class MovieDetailContent extends StatelessWidget {
                     ),
                   ),
                 ),
-                // Tab(text: 'More like this'.toUpperCase()),
                 SliverPadding(
                   padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 24.0),
                   sliver: _showRecommendations(),
@@ -256,31 +254,39 @@ class MovieDetailContent extends StatelessWidget {
               delegate: SliverChildBuilderDelegate(
                 (context, index) {
                   final recommendation = state.recommendations[index];
-                  return FadeInUp(
-                    from: 20,
-                    duration: const Duration(milliseconds: 500),
-                    child: ClipRRect(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(4.0)),
-                      child: CachedNetworkImage(
-                        imageUrl:
-                            ApiConstants.imageUrl(recommendation.backdropPath!),
-                        placeholder: (context, url) => Shimmer.fromColors(
-                          baseColor: Colors.grey[850]!,
-                          highlightColor: Colors.grey[800]!,
-                          child: Container(
-                            height: 170.0,
-                            width: 120.0,
-                            decoration: BoxDecoration(
-                              color: Colors.black,
-                              borderRadius: BorderRadius.circular(8.0),
+                  return InkWell(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return MovieDetailScreen(id: recommendation.id);
+                      }));
+                    },
+                    child: FadeInUp(
+                      from: 20,
+                      duration: const Duration(milliseconds: 500),
+                      child: ClipRRect(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(4.0)),
+                        child: CachedNetworkImage(
+                          imageUrl: ApiConstants.imageUrl(
+                              recommendation.backdropPath!),
+                          placeholder: (context, url) => Shimmer.fromColors(
+                            baseColor: Colors.grey[850]!,
+                            highlightColor: Colors.grey[800]!,
+                            child: Container(
+                              height: 170.0,
+                              width: 120.0,
+                              decoration: BoxDecoration(
+                                color: Colors.black,
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
                             ),
                           ),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
+                          height: 180.0,
+                          fit: BoxFit.cover,
                         ),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
-                        height: 180.0,
-                        fit: BoxFit.cover,
                       ),
                     ),
                   );

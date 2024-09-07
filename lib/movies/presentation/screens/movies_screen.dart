@@ -3,10 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/movies/presentation/controller/bloc/movies_bloc.dart';
 
 import '../../../core/services/services_loactor.dart';
-import '../../../core/utils/app_string.dart';
 import '../components/now_playing_component.dart';
 import '../components/popular_component.dart';
-import '../components/see_more_container.dart';
 import '../components/top_rated_component.dart';
 
 class MainMoviesScreen extends StatelessWidget {
@@ -18,29 +16,19 @@ class MainMoviesScreen extends StatelessWidget {
       create: (context) => sl<MoviesBloc>()
         ..add(const GetNowPlayingMovies())
         ..add(const GetPopularMovies())..add(const GetTopRatedMovies()),
-      child: Scaffold(
+      child: const Scaffold(
         backgroundColor: Colors.black,
         body: SingleChildScrollView(
-          key: const Key('movieScrollView'),
+          key: Key('movieScrollView'),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const NowPlayingComponent(),
-              SeeMoreContainer(
-                text: AppString.popular,
-                onTap: () {
-                  /// TODO : NAVIGATION TO Popular Movies Screen
-                },
-              ),
-              const PopularComponent(),
-              SeeMoreContainer(
-                text: AppString.topRated,
-                onTap: () {
-                  /// TODO : NAVIGATION TO Top Rated Movies Screen
-                },
-              ),
-              const TopRatedComponent(),
-              const SizedBox(height: 50.0),
+              NowPlayingComponent(),
+              
+              PopularComponent(),
+             
+              TopRatedComponent(),
+              SizedBox(height: 50.0),
             ],
           ),
         ),

@@ -6,7 +6,10 @@ import 'package:movies/movies/presentation/controller/bloc/movies_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../core/network/api_constants.dart';
+import '../../../core/utils/app_string.dart';
 import '../screens/movie_detail_screen.dart';
+import '../screens/populer_screen.dart';
+import 'see_more_container.dart';
 
 class PopularComponent extends StatelessWidget {
   const PopularComponent({
@@ -19,52 +22,68 @@ class PopularComponent extends StatelessWidget {
       buildWhen: (previous, current) =>
           previous.popularMovies != current.popularMovies,
       builder: (context, state) {
-        return FadeIn(
-          child: SizedBox(
-            height: 170.0,
-            child: ListView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              itemCount: state.popularMovies.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return MovieDetailScreen(id: state.popularMovies[index].id);
-                        }));
-                    },
-                    child: ClipRRect(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(8.0)),
-                      child: CachedNetworkImage(
-                        width: 120.0,
-                        fit: BoxFit.cover,
-                        imageUrl: ApiConstants.imageUrl(
-                            state.popularMovies[index].backdropPath),
-                        placeholder: (context, url) => Shimmer.fromColors(
-                          baseColor: Colors.grey[850]!,
-                          highlightColor: Colors.grey[800]!,
-                          child: Container(
-                            height: 170.0,
-                            width: 120.0,
-                            decoration: BoxDecoration(
-                              color: Colors.black,
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                          ),
-                        ),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
-                      ),
-                    ),
-                  ),
-                );
+        return Column(
+          children: [
+            SeeMoreContainer(
+              text: AppString.popular,
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return PopulerScreen(
+                    movies: state.popularMovies,
+                  );
+                }));
               },
             ),
-          ),
+            FadeIn(
+              child: SizedBox(
+                height: 170.0,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  itemCount: state.popularMovies.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return MovieDetailScreen(
+                                id: state.popularMovies[index].id);
+                          }));
+                        },
+                        child: ClipRRect(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(8.0)),
+                          child: CachedNetworkImage(
+                            width: 120.0,
+                            fit: BoxFit.cover,
+                            imageUrl: ApiConstants.imageUrl(
+                                state.popularMovies[index].backdropPath),
+                            placeholder: (context, url) => Shimmer.fromColors(
+                              baseColor: Colors.grey[850]!,
+                              highlightColor: Colors.grey[800]!,
+                              child: Container(
+                                height: 170.0,
+                                width: 120.0,
+                                decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                              ),
+                            ),
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+          ],
         );
       },
     );
