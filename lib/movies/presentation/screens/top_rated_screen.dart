@@ -89,12 +89,59 @@ class MovieItem extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Text(
-                      movie.releaseDate.substring(0, 4),
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 10.0,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: 4.0,
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 1.0,
+                            horizontal: 4.0,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.grey[800],
+                            borderRadius: BorderRadius.circular(4.0),
+                          ),
+                          child: Text(
+                            movie.releaseDate.split('-')[0],
+                            style: const TextStyle(
+                              fontSize: 10.0,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 16.0),
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                              size: 15.0,
+                            ),
+                            const SizedBox(width: 4.0),
+                            Text(
+                              (movie.voteAverage / 2).toStringAsFixed(1),
+                              style: const TextStyle(
+                                fontSize: 10.0,
+                                fontWeight: FontWeight.w500,
+                                letterSpacing: 1.2,
+                              ),
+                            ),
+                            const SizedBox(width: 4.0),
+                            Text(
+                              '(${movie.voteAverage})',
+                              style: const TextStyle(
+                                fontSize: 1.0,
+                                fontWeight: FontWeight.w500,
+                                letterSpacing: 1.2,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(width: 16.0),
+                      ],
                     ),
                   ],
                 ),
