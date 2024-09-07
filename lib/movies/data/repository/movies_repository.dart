@@ -1,7 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:movies/movies/domain/entities/movie.dart';
 import 'package:movies/movies/domain/entities/movie_details.dart';
+import 'package:movies/movies/domain/entities/recommendation.dart';
 import 'package:movies/movies/domain/usecases/get_movie_details_usecase.dart';
+import 'package:movies/movies/domain/usecases/get_recommendation_usecase.dart';
 
 import '../../../core/error/exceptions.dart';
 import '../../../core/error/failure.dart';
@@ -51,6 +53,12 @@ class MoviesRepository extends BaseMovieRepository {
     } on ServerException catch (e) {
       return Left(ServerFailure(e.errorMessageModel.message));
     }
+  }
+
+  @override
+  Future<Either<Failure, List<Recommendation>>> getRecommendation(RecommendationParams parameters) {
+    // TODO: implement getRecommendation
+    throw UnimplementedError();
   }
 
   
