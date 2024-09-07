@@ -5,7 +5,7 @@ import '../../../core/error/failure.dart';
 import '../../../core/usecase/base_use_case.dart';
 import '../entities/movie.dart';
 
-class GetPopularUsecase extends BaseUseCase {
+class GetPopularUsecase extends BaseUseCase <List<Movie>>{
   final BaseMovieRepository _moviesRepository;
 
   GetPopularUsecase(this._moviesRepository);
