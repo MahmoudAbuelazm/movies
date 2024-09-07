@@ -92,7 +92,7 @@ class MovieItem extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           width: 4.0,
                         ),
                         Container(
