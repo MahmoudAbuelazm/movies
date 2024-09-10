@@ -12,6 +12,7 @@ class TvPopularScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Populer Tv Shows'),
+        centerTitle: true,
       ),
       body: ListView.builder(
         shrinkWrap: true,

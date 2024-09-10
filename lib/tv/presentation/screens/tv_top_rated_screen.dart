@@ -17,6 +17,7 @@ class TvTopRatedScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Top Rated Tv Shows'),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12.0),

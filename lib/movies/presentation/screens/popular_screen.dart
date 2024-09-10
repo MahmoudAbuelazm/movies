@@ -12,6 +12,7 @@ class PopulerScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Populer Movies'),
+        centerTitle: true,
       ),
       body: ListView.builder(
         shrinkWrap: true,
