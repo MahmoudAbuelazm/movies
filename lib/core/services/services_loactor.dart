@@ -18,7 +18,8 @@ import '../../tv/domain/usecases/get_on_the_air_usecase.dart';
 import '../../tv/domain/usecases/get_popular_tv_usecase.dart';
 import '../../tv/domain/usecases/get_top_rated_tv_usecase.dart';
 import '../../tv/domain/usecases/get_tv_movie_details_usecase.dart';
-import '../../tv/presentation/controller/bloc/tv_bloc.dart';
+import '../../tv/presentation/controller/bloc/tv_details_bloc.dart';
+import '../../tv/presentation/controller/tv_bloc/tv_bloc.dart';
 
 final sl = GetIt.instance;
 
@@ -43,6 +44,7 @@ class ServicesLoactor {
 
     // TV Bloc
     sl.registerFactory(() => TvBloc(sl(), sl(), sl()));
+    sl.registerFactory(() => TvDetailsBloc(sl(), sl()));
 
     // Use cases TV
     sl.registerLazySingleton(() => GetMoreLikeThisUsecase(sl()));

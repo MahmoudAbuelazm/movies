@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/utils/app_string.dart';
-import '../../controller/bloc/tv_bloc.dart';
+import '../../controller/tv_bloc/tv_bloc.dart';
+import '../../screens/tv_popular_screen.dart';
 import 'list_view_item_component.dart';
 import 'see_more_container.dart';
 
@@ -24,11 +25,11 @@ class TvPopularComponent extends StatelessWidget {
             SeeMoreContainer(
               text: AppString.popular,
               onTap: () {
-                // Navigator.push(context, MaterialPageRoute(builder: (context) {
-                //   return PopulerScreen(
-                //     movies: state.popularMovies,
-                //   );
-                // }));
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return TvPopularScreen(
+                    movies: state.popularTvShows,
+                  );
+                }));
               },
             ),
             FadeIn(

@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/core/utils/enums.dart';
 
 import '../../../../core/network/api_constants.dart';
-import '../../controller/bloc/tv_bloc.dart';
+import '../../controller/tv_bloc/tv_bloc.dart';
 
 
 class OnTheAirComponent extends StatelessWidget {

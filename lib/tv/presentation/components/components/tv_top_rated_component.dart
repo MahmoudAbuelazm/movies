@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/utils/app_string.dart';
-import '../../controller/bloc/tv_bloc.dart';
+import '../../controller/tv_bloc/tv_bloc.dart';
+import '../../screens/tv_top_rated_screen.dart';
 import 'list_view_item_component.dart';
 import 'see_more_container.dart';
 
@@ -23,11 +24,11 @@ class TvTopRatedComponent extends StatelessWidget {
             SeeMoreContainer(
               text: AppString.topRated,
               onTap: () {
-                // Navigator.push(context, MaterialPageRoute(builder: (context) {
-                //   return TopRatedScreen(
-                //     movies: state.topRatedTvShows,
-                //   );
-                // }));
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return TvTopRatedScreen(
+                    tvShows: state.topRatedTvShows,
+                  );
+                }));
               },
             ),
             FadeIn(

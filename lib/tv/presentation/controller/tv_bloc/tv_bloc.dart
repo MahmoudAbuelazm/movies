@@ -23,6 +23,7 @@ class TvBloc extends Bloc<TvEvent, TvState> {
   ) : super(const TvState()) {
     on<GetOnTheAirTv>((event, emit) async {
       final result = await getOnTheAirUsecase(NoParams());
+      
       result.fold(
         (failure) =>
             emit(state.copyWith(onTheAirRequestState: RequestState.error)),

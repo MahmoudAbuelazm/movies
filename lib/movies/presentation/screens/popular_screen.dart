@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../../domain/entities/movie.dart';
@@ -14,13 +13,11 @@ class PopulerScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Populer Movies'),
       ),
-      body: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-        ),
+      body: ListView.builder(
+        shrinkWrap: true,
         itemCount: movies.length,
         itemBuilder: (context, index) {
-          final movie = movies[index];
+          final movie = movies.reversed.toList()[index];
           return MovieItem(movie: movie, index: index);
         },
       ),

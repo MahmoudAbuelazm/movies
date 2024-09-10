@@ -1,12 +1,11 @@
-
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/tv/domain/entities/tv_movie.dart';
+import 'package:movies/tv/presentation/screens/tv_movie_detail_screen.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../core/network/api_constants.dart';
-
 
 class ListViewItem extends StatelessWidget {
   final int index;
@@ -25,11 +24,11 @@ class ListViewItem extends StatelessWidget {
         padding: const EdgeInsets.only(right: 8.0),
         child: InkWell(
           onTap: () {
-            // Navigator.push(context, MaterialPageRoute(builder: (context) {
-            //   return MovieDetailScreen(
-            //     id: movie.id,
-            //   );
-            // }));
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return TvMovieDetailScreen(
+                id: movie.id,
+              );
+            }));
           },
           child: ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(8.0)),
