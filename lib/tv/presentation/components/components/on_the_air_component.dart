@@ -7,6 +7,7 @@ import 'package:movies/core/utils/enums.dart';
 
 import '../../../../core/network/api_constants.dart';
 import '../../controller/tv_bloc/tv_bloc.dart';
+import '../../screens/tv_movie_detail_screen.dart';
 
 
 class OnTheAirComponent extends StatelessWidget {
@@ -43,10 +44,10 @@ class OnTheAirComponent extends StatelessWidget {
                     return GestureDetector(
                       key: const Key('openTvShowMinimalDetail'),
                       onTap: () {
-                        // Navigator.push(context,
-                        //     MaterialPageRoute(builder: (context) {
-                        //   return MovieDetailScreen(id: item.id);
-                        // }));
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return TvMovieDetailScreen(id: item.id);
+                        }));
                       },
                       child: Stack(
                         children: [
