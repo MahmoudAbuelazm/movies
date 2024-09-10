@@ -13,11 +13,11 @@ class TvMovieModel extends TvMovie {
 
   factory TvMovieModel.fromJson(Map<String, dynamic> json) => TvMovieModel(
         id: json['id'],
-        title: json['title'],
+        title: json['name'],
         backdropPath: json['backdrop_path'],
         genreIds: List.from(json['genre_ids']).map((e) => e as int).toList(),
         overview: json['overview'],
         voteAverage: json['vote_average'],
-        releaseDate: json['release_date'],
+        releaseDate: json['first_air_date'],
       );
 }

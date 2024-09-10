@@ -3,6 +3,7 @@ import 'package:movies/core/services/services_loactor.dart';
 
 import 'core/utils/app_string.dart';
 import 'movies/presentation/screens/movies_screen.dart';
+import 'tv/presentation/screens/tv_screen.dart';
 
 void main() {
   ServicesLoactor().init();
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: AppString.appName,
       theme: ThemeData.dark()
           .copyWith(scaffoldBackgroundColor: Colors.grey.shade900),
-      home: const MainMoviesScreen(),
+      home: const TvScreen(),
     ); 
   }
 }

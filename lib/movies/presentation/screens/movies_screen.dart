@@ -15,20 +15,17 @@ class MainMoviesScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => sl<MoviesBloc>()
         ..add(const GetNowPlayingMovies())
-        ..add(const GetPopularMovies())..add(const GetTopRatedMovies()),
+        ..add(const GetPopularMovies())
+        ..add(const GetTopRatedMovies()),
       child: const Scaffold(
-        backgroundColor: Colors.black,
         body: SingleChildScrollView(
           key: Key('movieScrollView'),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               NowPlayingComponent(),
-              
               PopularComponent(),
-             
               TopRatedComponent(),
-              SizedBox(height: 50.0),
             ],
           ),
         ),

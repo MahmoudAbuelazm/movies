@@ -3,10 +3,10 @@ import 'package:movies/tv/domain/entities/tv_movie.dart';
 
 import '../../../core/error/failure.dart';
 import '../../../core/usecase/base_use_case.dart';
-import '../repository/tv_repository.dart';
+import '../repository/base_tv_repository.dart';
 
 class GetPopularTvUsecase extends BaseUseCase <List<TvMovie>,NoParams>{
-  final TvRepository _tvRepository;
+  final BaseTvRepository _tvRepository;
 
   GetPopularTvUsecase(this._tvRepository);
 

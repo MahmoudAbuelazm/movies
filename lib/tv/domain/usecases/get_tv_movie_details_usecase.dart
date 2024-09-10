@@ -2,13 +2,13 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:movies/core/error/failure.dart';
 import 'package:movies/core/usecase/base_use_case.dart';
-import 'package:movies/tv/domain/repository/tv_repository.dart';
+import 'package:movies/tv/domain/repository/base_tv_repository.dart';
 
 import '../entities/tv_movie_details.dart';
 
 class GetTvMovieDetailsUsecase
     extends BaseUseCase<TvMovieDetails, TvMovieDetailsParams> {
-  final TvRepository _tvRepository;
+  final BaseTvRepository _tvRepository;
 
   GetTvMovieDetailsUsecase(this._tvRepository);
 

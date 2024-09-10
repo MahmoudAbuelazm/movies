@@ -17,7 +17,8 @@ abstract class BaseMovieRemoteDataSource {
 
   Future<MovieDetailsModel> getMovieDetails(MovieDetailsParams movieId);
 
-  Future<List<Recommendation>> getRecommendation(RecommendationParams parameters);
+  Future<List<Recommendation>> getRecommendation(
+      RecommendationParams parameters);
 }
 
 class MovieRemoteDataSource extends BaseMovieRemoteDataSource {
@@ -56,10 +57,11 @@ class MovieRemoteDataSource extends BaseMovieRemoteDataSource {
       throw ServerException(ErrorMessageModel.fromJson(respone.data));
     }
   }
-  
+
   @override
-  Future<MovieDetailsModel> getMovieDetails(MovieDetailsParams movieId)async {
-    final response = await Dio().get(ApiConstants.movieDetails(movieId.movieId));
+  Future<MovieDetailsModel> getMovieDetails(MovieDetailsParams movieId) async {
+    final response =
+        await Dio().get(ApiConstants.movieDetails(movieId.movieId));
 
     if (response.statusCode == 200) {
       return MovieDetailsModel.fromJson(response.data);
@@ -67,17 +69,18 @@ class MovieRemoteDataSource extends BaseMovieRemoteDataSource {
       throw ServerException(ErrorMessageModel.fromJson(response.data));
     }
   }
-  
+
   @override
-  Future<List<RecommendationModel>> getRecommendation(RecommendationParams parameters)async {
-   final response =await Dio().get(ApiConstants.recommendation(parameters.movieId));
+  Future<List<RecommendationModel>> getRecommendation(
+      RecommendationParams parameters) async {
+    final response =
+        await Dio().get(ApiConstants.recommendationMovie(parameters.movieId));
 
     if (response.statusCode == 200) {
-      return List<RecommendationModel>.from(
-          (response.data['results'] as List).map((x) => RecommendationModel.fromJson(x)));
+      return List<RecommendationModel>.from((response.data['results'] as List)
+          .map((x) => RecommendationModel.fromJson(x)));
     } else {
       throw ServerException(ErrorMessageModel.fromJson(response.data));
     }
-    
   }
 }

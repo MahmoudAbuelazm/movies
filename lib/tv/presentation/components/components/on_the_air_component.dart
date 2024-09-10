@@ -4,24 +4,23 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/core/utils/enums.dart';
-import 'package:movies/movies/presentation/controller/bloc/movies_bloc.dart';
 
-import '../../../core/network/api_constants.dart';
-import '../../../core/utils/app_string.dart';
-import '../screens/movie_detail_screen.dart';
+import '../../../../core/network/api_constants.dart';
+import '../../controller/bloc/tv_bloc.dart';
 
-class NowPlayingComponent extends StatelessWidget {
-  const NowPlayingComponent({
+
+class OnTheAirComponent extends StatelessWidget {
+  const OnTheAirComponent({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MoviesBloc, MoviesState>(
+    return BlocBuilder<TvBloc, TvState>(
       buildWhen: (previous, current) =>
-          previous.nowPlayingMovies != current.nowPlayingMovies,
+          previous.onTheAirTvShows != current.onTheAirTvShows,
       builder: (context, state) {
-        switch (state.nowPlayingrequestState) {
+        switch (state.onTheAirRequestState) {
           case RequestState.loading:
             return SizedBox(
               height: MediaQuery.of(context).size.height * 0.3,
@@ -38,15 +37,15 @@ class NowPlayingComponent extends StatelessWidget {
                   autoPlay: true,
                   onPageChanged: (index, reason) {},
                 ),
-                items: state.nowPlayingMovies.map(
+                items: state.onTheAirTvShows.map(
                   (item) {
                     return GestureDetector(
-                      key: const Key('openMovieMinimalDetail'),
+                      key: const Key('openTvShowMinimalDetail'),
                       onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return MovieDetailScreen(id: item.id);
-                        }));
+                        // Navigator.push(context,
+                        //     MaterialPageRoute(builder: (context) {
+                        //   return MovieDetailScreen(id: item.id);
+                        // }));
                       },
                       child: Stack(
                         children: [
@@ -91,7 +90,7 @@ class NowPlayingComponent extends StatelessWidget {
                                       ),
                                       const SizedBox(width: 4.0),
                                       Text(
-                                        AppString.nowPlaying.toUpperCase(),
+                                        "On The Air".toUpperCase(),
                                         style: const TextStyle(
                                           fontSize: 16.0,
                                           color: Colors.white,
@@ -127,7 +126,7 @@ class NowPlayingComponent extends StatelessWidget {
             return SizedBox(
               height: 400.0,
               child: Center(
-                child: Text(state.nowPlayingMessage),
+                child: Text(state.onTheAirMessage),
               ),
             );
         }
