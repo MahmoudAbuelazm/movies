@@ -36,6 +36,7 @@ class OnTheAirComponent extends StatelessWidget {
                   viewportFraction: 1.0,
                   autoPlay: true,
                   onPageChanged: (index, reason) {},
+                 
                 ),
                 items: state.onTheAirTvShows.map(
                   (item) {
