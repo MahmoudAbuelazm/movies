@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/tv/presentation/controller/bloc/tv_bloc.dart';
 
 import '../../../core/services/services_loactor.dart';
 import '../components/components/on_the_air_component.dart';
+import '../components/components/tv_popular_component.dart';
+import '../components/components/tv_top_rated_component.dart';
 
 class TvScreen extends StatelessWidget {
   const TvScreen({super.key});
@@ -22,7 +23,9 @@ class TvScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-             OnTheAirComponent()
+              OnTheAirComponent(),
+              TvPopularComponent(),
+              TvTopRatedComponent(),
             ],
           ),
         ),
